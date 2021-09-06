@@ -4,10 +4,11 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :locations
 
-  resources :events do
-    resources :invites, except: :destroy
-  end
-  resources :invites, only: :destroy
+  resources :events
+
+  resources :invites
 
   resources :groups
+
+  resources :users
 end
