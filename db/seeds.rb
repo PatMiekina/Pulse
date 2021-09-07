@@ -58,7 +58,9 @@ suffixes = ["Class", "Masterclass", "Experience", "Workshop", "Adventure", "Even
     start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
     duration: event_durations.sample,
     location: location,
-    host: User.all.sample
+    host: User.all.sample,
+    description: Faker::Hipster.paragraph,
+    price: rand(15..100)
     )
 end
 puts "Events created!"

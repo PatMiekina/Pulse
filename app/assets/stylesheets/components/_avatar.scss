@@ -18,3 +18,9 @@
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   border: white 1px solid;
 }
+
+.avatar-navbar {
+  box-shadow: 0px 0px 32px 8px $cyan;
+  border: solid 1px $cyan;
+  width: 48px;
+}
