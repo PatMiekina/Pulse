@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :groups
 
   resources :users
+  get '/my-events', to: "users#my_events", as: "my_events"
+  get '/my-friends', to: "users#my_friends", as: "my_friends"
 end

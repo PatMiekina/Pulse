@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="event-info">
+    <h4><i class="far fa-calendar-check"></i> My events:</h4>
+    <% unless @events.empty? %>
+      <ul>
+        <% @events.each do |event| %>
+          <li><%= link_to event.name, event_path(event)%></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No events yet.</p>
+    <% end %>
+    <h4><i class="far fa-heart"></i> My wishlist:</h4>
+    <% unless @wishlist.empty? %>
+      <ul>
+        <% @wishlist.each do |event| %>
+          <li><%= link_to event.name, event_path(event)%></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No events on my wishlist.</p>
+    <% end %>
+  </div>
+</div>

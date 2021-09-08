@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @events = @user.my_events
+    @wishlist = @user.my_wishlist
   end
 
   def new
@@ -35,6 +37,20 @@ class UsersController < ApplicationController
 
   def destroy
     @user.delete
+  end
+
+  def my_events
+    @events = current_user.my_events
+    @wishlist = current_user.my_wishlist
+  end
+
+  def my_friends
+    @users = []
+    @following = []
+    rand(3..5).times do
+      @users << User.all.sample
+      @following << User.all.sample
+    end
   end
 
   private
