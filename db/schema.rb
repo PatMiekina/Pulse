@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_07_001112) do
+ActiveRecord::Schema.define(version: 2021_09_08_013244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,17 @@ ActiveRecord::Schema.define(version: 2021_09_07_001112) do
     t.integer "price"
     t.index ["host_id"], name: "index_events_on_host_id"
     t.index ["location_id"], name: "index_events_on_location_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "owner_id"
+    t.bigint "user_id"
+    t.bigint "event_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_favorites_on_event_id"
+    t.index ["owner_id"], name: "index_favorites_on_owner_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -106,6 +117,9 @@ ActiveRecord::Schema.define(version: 2021_09_07_001112) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "events", "locations"
   add_foreign_key "events", "users", column: "host_id"
+  add_foreign_key "favorites", "events"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "favorites", "users", column: "owner_id"
   add_foreign_key "groups", "events"
   add_foreign_key "groups", "users", column: "owner_id"
   add_foreign_key "invites", "groups"

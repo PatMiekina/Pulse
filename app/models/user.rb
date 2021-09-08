@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_many :invites, class_name: "Invite", foreign_key: "owner_id"
   has_many :invites, class_name: "Invite", foreign_key: "attendee_id"
 
+  has_many :favorites, class_name: "Favorite", foreign_key: "owner_id"
+  has_many :favorites, class_name: "Favorite", foreign_key: "user_id"
+
   has_one_attached :photo
 
   def my_events

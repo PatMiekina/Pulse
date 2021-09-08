@@ -91,4 +91,17 @@ boolean = [true, false]
 # Faker::Games::Witcher.quote
 puts "Invites created!"
 
+puts "Creating 50 favorites..."
+  50.times do
+    Favorite.create(
+      owner: User.all.sample,
+      event: Event.all.sample
+      )
+    Favorite.create(
+      owner: User.all.sample,
+      user: User.all.sample
+      )
+  end
+puts "Favorites created!"
+
 puts "Population complete! :)"
