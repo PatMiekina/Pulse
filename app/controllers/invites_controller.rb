@@ -45,6 +45,6 @@ class InvitesController < ApplicationController
   end
 
   def find_invite
-    @invite = Invite.find(params[:invite])
+    @invite = Invite.find(params[:id])
   end
 end

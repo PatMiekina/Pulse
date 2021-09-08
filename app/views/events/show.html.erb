@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="links">
+    <%= link_to "Back", events_path, class:"btn btn-primary" %>
+  </div>
+  <div class="top">
+    <h2><%= @event.name %></h2>
+    <% if current_user.my_wishlist.include?(@event) %>
+      <p><i class="fas fa-heart"></i> Added to wish list</p>
+    <% else %>
+      <%= link_to "#" do %>
+        <p><i class="far fa-heart"></i> Add to wish list</p>
+      <% end %>
+    <% end %>
+    <%= image_tag "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", class: "event-img" %>
+  </div>
+  <div class="event-info">
+    <p><%= @event.category %></p>
+    <p><%= @event.start_time.strftime("%d %b %Y, %l:%M %P ") %> | <%= @event.duration %>mins </p>
+    <p><em> <%= @event.location.address %> </em></p>
+    <p><%= @event.description %></p>
+    <p><%= @event.price %>$</p>
+  </div>
+  <div class="cta">
+    <%= link_to "Attend!", "#", class:"btn btn-primary" %>
+    <%= link_to "Invite a friend!", "#", class:"btn btn-primary" %>
+  </div>
+</div>
