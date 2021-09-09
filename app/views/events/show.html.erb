@@ -5,7 +5,7 @@
   <div class="top">
     <h2><%= @event.name %></h2>
     <% if current_user.my_events_wishlist.include?(@event) %>
-      <%= link_to favorite_path(@favorite), method: :delete do %>
+      <%= link_to favorite_path(@favorite, event: @event), method: :delete do %>
         <p><i class="fas fa-heart icon"></i> Remove from wish list</p>
       <% end %>
     <% else %>

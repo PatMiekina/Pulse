@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-  before_action :find_event, :find_user, only: :add_to_wishlist
+  before_action :find_event, :find_user, only: [:add_to_wishlist, :destroy]
   before_action :find_favorite, only: [:destroy]
 
   def new
@@ -48,6 +48,11 @@ class FavoritesController < ApplicationController
 
   def destroy
     @favorite.delete
+    if @event.present?
+      redirect_to event_path(@event)
+    elsif @user.present?
+      redirect_to user_path(@user)
+    end
   end
 
   private
