@@ -16,22 +16,38 @@ class User < ApplicationRecord
   has_one_attached :photo
 
   def my_events
-    my_events = []
-    self.invites.each do |invite|
-      if invite.confirmed
-        my_events << invite.group.event
+    events = []
+    invites = Invite.all
+    invites.each do |invite|
+      if invite.confirmed && (invite.owner || invite.attendee) == self
+        events << invite.group.event
       end
     end
-    my_events
+    events
   end
 
-  def my_wishlist
-    my_wishlist = []
-    self.invites.each do |invite|
-      if invite.wishlist
-        my_wishlist << invite.group.event
+  def my_events_wishlist
+    favorites = Favorite.all.select { |favorite| favorite.owner == self && favorite.event != nil }
+    wishlist = favorites.map { |favorite| favorite.event }
+    wishlist
+  end
+
+  def my_friends
+    friends = []
+    invites = Invite.all
+    invites.each do |invite|
+      if invite.confirmed && invite.owner == self
+        friends << invite.attendee
+      elsif invite.confirmed && invite.attendee == self
+        friends << invite.owner
       end
     end
-    my_wishlist
+    friends
+  end
+
+  def my_following
+    favorites = Favorite.all.select { |favorite| favorite.owner == self && favorite.user != nil }
+    following = favorites.map { |favorite| favorite.user }
+    following
   end
 end

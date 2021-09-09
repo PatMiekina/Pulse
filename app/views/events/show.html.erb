@@ -4,7 +4,7 @@
   </div>
   <div class="top">
     <h2><%= @event.name %></h2>
-    <% if current_user.my_wishlist.include?(@event) %>
+    <% if current_user.my_event_wishlist.include?(@event) %>
       <p><i class="fas fa-heart"></i> Added to wish list</p>
     <% else %>
       <%= link_to "#" do %>

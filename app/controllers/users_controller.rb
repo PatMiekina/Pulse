@@ -7,7 +7,9 @@ class UsersController < ApplicationController
 
   def show
     @events = @user.my_events
-    @wishlist = @user.my_wishlist
+    @wishlist = @user.my_events_wishlist
+    @following = @user.my_following
+    @friends = @user.my_friends
   end
 
   def new
@@ -40,17 +42,24 @@ class UsersController < ApplicationController
   end
 
   def my_events
-    @events = current_user.my_events
-    @wishlist = current_user.my_wishlist
+    current_user.my_events
+    current_user.my_events_wishlist
   end
 
   def my_friends
-    @users = []
-    @following = []
-    rand(3..5).times do
-      @users << User.all.sample
-      @following << User.all.sample
-    end
+    # @friends = []
+    # invites = Invite.all
+    # invites.each do |invite|
+    #   if invite.confirmed && invite.owner == current_user
+    #     @friends << invite.attendee
+    #   elsif invite.confirmed && invite.attendee == current_user
+    #     @friends << invite.owner
+    #   end
+    # end
+    # @favorites = Favorite.all.select { |favorite| favorite.owner == current_user && favorite.user != nil }
+    # @following = @favorites.map { |favorite| favorite.user }
+    current_user.my_friends
+    current_user.my_following
   end
 
   private
