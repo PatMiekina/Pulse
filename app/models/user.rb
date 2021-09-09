@@ -45,6 +45,7 @@ class User < ApplicationRecord
     friends
   end
 
+  # Find following users for a user instance
   def my_following
     favorites = Favorite.all.select { |favorite| favorite.owner == self && favorite.user != nil }
     following = favorites.map { |favorite| favorite.user }

@@ -1,5 +1,6 @@
 class FavoritesController < ApplicationController
   before_action :find_event, :find_user, only: :add_to_wishlist
+  before_action :find_favorite, only: [:destroy]
 
   def new
     @favorite = Favorite.new
@@ -45,6 +46,10 @@ class FavoritesController < ApplicationController
     end
   end
 
+  def destroy
+    @favorite.delete
+  end
+
   private
 
   def find_event
@@ -57,5 +62,9 @@ class FavoritesController < ApplicationController
     if params[:user].present?
       @user = User.find(params[:user])
     end
+  end
+
+  def find_favorite
+    @favorite = Favorite.find(params[:id])
   end
 end

@@ -5,7 +5,9 @@
   <div class="top">
     <h2>Hi! I'm <%= @user.username %>!</h2>
     <% if current_user.my_following.include?(@user) %>
-      <p><i class="fas fa-heart"></i> Following</p>
+      <%= link_to favorite_path(@favorite), method: :delete do %>
+        <p><i class="fas fa-heart"></i> Unfollow</p>
+      <% end %>
     <% else %>
       <%= link_to add_to_wishlist_path(owner: current_user, user: @user), method: :post do %>
         <p><i class="far fa-heart"></i> Follow</p>

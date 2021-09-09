@@ -10,6 +10,9 @@ class UsersController < ApplicationController
     @wishlist = @user.my_events_wishlist
     @following = @user.my_following
     @friends = @user.my_friends
+    if current_user.my_following.include?(@user)
+      @favorite = Favorite.find_by user: @user, owner: current_user
+    end
   end
 
   def new
@@ -42,8 +45,8 @@ class UsersController < ApplicationController
   end
 
   def my_events
-    current_user.my_events
-    current_user.my_events_wishlist
+    @events = current_user.my_events
+    @wishlist = current_user.my_events_wishlist
   end
 
   def my_friends
@@ -58,8 +61,8 @@ class UsersController < ApplicationController
     # end
     # @favorites = Favorite.all.select { |favorite| favorite.owner == current_user && favorite.user != nil }
     # @following = @favorites.map { |favorite| favorite.user }
-    current_user.my_friends
-    current_user.my_following
+    @friends = current_user.my_friends
+    @following = current_user.my_following
   end
 
   private
