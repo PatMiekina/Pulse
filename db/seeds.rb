@@ -104,4 +104,15 @@ puts "Creating 50 favorites..."
   end
 puts "Favorites created!"
 
+puts "Creating 50 reviews..."
+  50.times do |i|
+    Review.create(
+      # reviewer: User.all.sample,
+      user: User.all.sample,
+      rating: [1..5].sample,
+      content: Faker::Lorem.paragraph(sentence_count: 2),
+      )
+  end
+puts "Reviewses created!"
+
 puts "Population complete! :)"
