@@ -10,7 +10,11 @@ Rails.application.routes.draw do
 
   resources :groups
 
-  resources :users
+  resources :users do
+    resources :reviews, except: [:destroy]
+  end
+  resources :reviews, only: [:destroy]
+
   get '/my-events', to: "users#my_events", as: "my_events"
   get '/my-friends', to: "users#my_friends", as: "my_friends"
 
