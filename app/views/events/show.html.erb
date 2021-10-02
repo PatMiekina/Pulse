@@ -1,6 +1,10 @@
 <div class="container">
   <div class="links">
-    <%= link_to "Back", events_path, class:"btn btn-primary" %>
+    <% if params[:user].present? %>
+      <%= link_to "Back", events_path(user: @user), class:"btn btn-primary" %>
+    <% else %>
+      <%= link_to "Back", events_path, class:"btn btn-primary" %>
+    <% end %>
   </div>
   <div class="top">
     <h2><%= @event.name %></h2>
@@ -23,7 +27,11 @@
     <p><%= @event.price %>$</p>
   </div>
   <div class="cta">
-    <%= link_to "Attend!", "#", class:"btn btn-primary" %>
-    <%= link_to "Invite a friend!", "#", class:"btn btn-primary" %>
+    <% if @user.present? %>
+      <%= link_to "Invite to event", "#", class:"btn btn-primary" %>
+    <% else %>
+      <%= link_to "Attend!", "#", class:"btn btn-primary" %>
+      <%= link_to "Invite a friend!", users_path(event: @event), class:"btn btn-primary" %>
+    <% end %>
   </div>
 </div>

@@ -13,6 +13,9 @@ class User < ApplicationRecord
   has_many :favorites, class_name: "Favorite", foreign_key: "owner_id"
   has_many :favorites, class_name: "Favorite", foreign_key: "user_id"
 
+  has_many :reviews, class_name: "Review", foreign_key: "reviewer_id"
+  has_many :reviews, class_name: "Review", foreign_key: "user_id"
+
   has_one_attached :photo
 
   def my_events

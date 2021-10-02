@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update, :destroy]
+  before_action :find_event, only: [:index, :show]
 
   def index
     @users = User.all
@@ -73,5 +74,11 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find(params[:id])
+  end
+
+  def find_event
+    if params[:event].present?
+      @event = Event.find(params[:event])
+    end
   end
 end
