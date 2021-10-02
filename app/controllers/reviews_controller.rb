@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
-    before_action :find_review, only: [:show, :edit, :update, :destroy]
+  before_action :find_review, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, except: [:destroy]
+  before_action :set_event, except: [:destroy]
 
   def index
     @reviews = Review.all
@@ -14,9 +16,18 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @review.owner = current_user
+    @review.reviewer = current_user
+    if @event.nil?
+      @review.user = @user
+    else @user.nil?
+      @review.event = @event
+    end
     if @review.save
-      redirect_to review_path(@review)
+      if @review.event
+        redirect_to event_path(@event)
+      elsif @review.user
+        redirect_to user_path(@user)
+      end
     else
       render :new
     end
@@ -46,5 +57,17 @@ class ReviewsController < ApplicationController
 
   def find_review
     @review = Review.find(params[:id])
+  end
+
+  def set_event
+    if params[:event_id].present?
+      @event = Event.find(params[:event_id])
+    end
+  end
+
+  def set_user
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
+    end
   end
 end

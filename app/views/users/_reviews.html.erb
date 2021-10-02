@@ -8,8 +8,9 @@
           <div class="review">
             <div class="content">
               <p><% review.rating.times do %>
-                ⭐ <em><%= review.reviewer.username %></em>
+                ⭐
                 <% end %>
+                <em> <%= review.reviewer.username %></em>
               </p>
               <p><%= review.content %></p>
             </div>
