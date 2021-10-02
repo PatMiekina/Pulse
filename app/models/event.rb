@@ -4,5 +4,6 @@ class Event < ApplicationRecord
   has_many_attached :photos
   has_many :groups
   has_many :favorites
+  has_many :reviews
   # has_many :invites, dependent: :destroy, through: :groups
 end

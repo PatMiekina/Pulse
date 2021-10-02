@@ -107,7 +107,7 @@ puts "Favorites created!"
 puts "Creating 50 user reviews..."
   50.times do |i|
     Review.create(
-      # reviewer: User.all.sample,
+      reviewer: User.all.sample,
       user: User.all.sample,
       rating: [1..5].sample,
       content: Faker::Lorem.paragraph(sentence_count: 2),
@@ -118,7 +118,7 @@ puts "User reviews created!"
 puts "Creating 50 event reviews..."
   50.times do |i|
     Review.create(
-      # reviewer: User.all.sample,
+      reviewer: User.all.sample,
       event: Event.all.sample,
       rating: [1..5].sample,
       content: Faker::Lorem.paragraph(sentence_count: 2),
