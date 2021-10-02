@@ -48,6 +48,7 @@
       <%= link_to "Invite to an event", events_path(user: @user), class:"btn btn-primary" %>
     <% end %>
   </div>
+  <%= render 'reviews', user: @user%>
 
 </div>
 

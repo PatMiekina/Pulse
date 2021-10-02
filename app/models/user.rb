@@ -54,4 +54,12 @@ class User < ApplicationRecord
     following = favorites.map { |favorite| favorite.user }
     following
   end
+
+  def my_rating
+    rating_sum = 0
+    self.reviews.each do |review|
+      review.rating
+    end
+    rating = rating_sum.fdiv(self.reviews.length).round(1)
+  end
 end

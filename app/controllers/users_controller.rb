@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     if current_user.my_following.include?(@user)
       @favorite = Favorite.find_by user: @user, owner: current_user
     end
+    @review = Review.new
   end
 
   def new

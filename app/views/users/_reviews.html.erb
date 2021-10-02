@@ -1,0 +1,32 @@
+<div class="reviews">
+  <div class="display-reviews">
+    <% if @user.reviews.empty? %>
+      <p>Be the first to leave a review!</p>
+    <% else %>
+        <p>Rating: <%= @user.my_rating %></p>
+        <% @user.reviews.each do |review| %>
+          <div class="review">
+            <div class="content">
+              <p><% review.rating.times do %>
+                ⭐ <em><%= review.reviewer.username %></em>
+                <% end %>
+              </p>
+              <p><%= review.content %></p>
+            </div>
+            <% if review.user == current_user %>
+              <%= link_to review_path(review), method: :delete,
+                  data: { confirm: "Are you sure?" }, class:"delete-review" do %>
+                <p><i class="fas fa-trash"></i> Delete</p>
+              <% end %>
+            <% end %>
+          </div>
+          <% unless review == @dress.reviews.last %>
+            <hr>
+          <% end %>
+          <% end %>
+    <% end %>
+  </div>
+  <div class="new-review">
+    <%= render "form_user", user: @user, review: @review %>
+  </div>
+</div>
