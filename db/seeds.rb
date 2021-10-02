@@ -113,6 +113,6 @@ puts "Creating 50 reviews..."
       content: Faker::Lorem.paragraph(sentence_count: 2),
       )
   end
-puts "Reviewses created!"
+puts "Reviewes created!"
 
 puts "Population complete! :)"
