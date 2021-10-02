@@ -9,8 +9,8 @@ class EventsController < ApplicationController
   def show
     if current_user.my_events_wishlist.include?(@event)
       @favorite = Favorite.find_by event: @event, owner: current_user
-      @review = Review.new
     end
+    @review = Review.new
   end
 
   def new

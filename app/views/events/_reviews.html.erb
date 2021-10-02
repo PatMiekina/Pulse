@@ -1,14 +1,14 @@
 <div class="reviews">
   <div class="display-reviews">
-    <% if @user.reviews.empty? %>
+    <% if @event.reviews.empty? %>
       <p>Be the first to leave a review!</p>
     <% else %>
-        <p>Rating: <%= @user.my_rating %></p>
-        <% @user.reviews.each do |review| %>
+        <p>Rating: <%= @event.my_rating %></p>
+        <% @event.reviews.each do |review| %>
           <div class="review">
             <div class="content">
               <p><% review.rating.times do %>
-                ⭐ <em><%= review.reviewer.username %></em>
+                ⭐ <em><%= review.reviewer.eventname %></em>
                 <% end %>
               </p>
               <p><%= review.content %></p>
@@ -20,13 +20,13 @@
               <% end %>
             <% end %>
           </div>
-          <% unless review == @user.reviews.last %>
+          <% unless review == @event.reviews.last %>
             <hr>
           <% end %>
           <% end %>
     <% end %>
   </div>
   <div class="new-review">
-    <%= render "form_user", user: @user, review: @review %>
+    <%= render "form_event", event: @event, review: @review %>
   </div>
 </div>
