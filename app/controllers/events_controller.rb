@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [ :index ]
   before_action :find_event, only: [:show, :edit, :update, :destroy]
   before_action :find_user, only: [:show, :index]
 
