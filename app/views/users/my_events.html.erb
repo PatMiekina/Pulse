@@ -4,7 +4,17 @@
     <% unless @events.empty? %>
       <ul>
         <% @events.each do |event| %>
-          <li><%= link_to event.name, event_path(event)%></li>
+          <li>
+            <div class="ticket">
+              <div class="ticket-info">
+                <p><%= event.start_time.strftime("%d %b %y %I:%M") %></p>
+                <p><%= event.location.name %></p>
+              </div>
+              <%= link_to event.name, event_path(event)%>
+              <div class="ticket-code">
+              </div>
+            </div>
+          </li>
         <% end %>
       </ul>
     <% else %>
