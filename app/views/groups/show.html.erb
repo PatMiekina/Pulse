@@ -1,14 +1,13 @@
 <div class="container">
   <h3><%= @group.name %></h3>
-  <h4><%= @group.event.name %></h4>
-  <%= link_to event_path(@group.event) do %>
+  <h4><%= @event.name %></h4>
+  <%= link_to event_path(@event) do %>
     <%= image_tag "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", class: "event-img" %>
   <% end %>
   <h4>Attendees:</h4>
   <ul>
-    <% @group.invites.each do |invite| %>
-      <li><%= link_to invite.attendee.username, user_path(invite.attendee) %></li>
-      <li><%= link_to invite.owner.username, user_path(invite.owner)  %></li>
+    <% @attendees.each do |attendee| %>
+      <li><%= link_to attendee.username, user_path(attendee) %></li>
     <% end %>
   </ul>
 

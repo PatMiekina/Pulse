@@ -7,6 +7,13 @@ class GroupsController < ApplicationController
 
   def show
     @event = @group.event
+    @attendees = []
+    @group.invites.each do |invite|
+      @attendees << invite.owner
+      @attendees << invite.attendee
+    end
+    @attendees.uniq!
+    @attendees.sort!
   end
 
   def new
