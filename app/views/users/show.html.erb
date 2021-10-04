@@ -43,7 +43,7 @@
   </div>
   <div class="cta">
     <% if params[:event].present? %>
-      <%= link_to "Invite", "#", class:"btn btn-primary" %>
+      <%= link_to "Invite", invite_to_event_path(event: @event, user: @user), class:"btn btn-primary", method: :post %>
     <% else %>
       <%= link_to "Invite to an event", events_path(user: @user), class:"btn btn-primary" %>
     <% end %>
