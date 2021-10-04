@@ -22,4 +22,6 @@ Rails.application.routes.draw do
 
   resources :favorites
   post '/add-to-wishlist', to: "favorites#add_to_wishlist", as: "add_to_wishlist"
+
+  post '/join-event', to: "invites#join_event", as: "join_event"
 end
