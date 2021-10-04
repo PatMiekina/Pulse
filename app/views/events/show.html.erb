@@ -28,7 +28,7 @@
   </div>
   <div class="cta">
     <% if @user.present? %>
-      <%= link_to "Invite to event", "#", class:"btn btn-primary" %>
+      <%= link_to "Invite to event", invite_to_event_path(event: @event, user: @user), class:"btn btn-primary", method: :post %>
     <% else %>
       <%= link_to "Attend!", join_event_path(event: @event.id), class:"btn btn-primary", method: :post %>
       <%= link_to "Invite a friend!", users_path(event: @event), class:"btn btn-primary" %>

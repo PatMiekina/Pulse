@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   post '/add-to-wishlist', to: "favorites#add_to_wishlist", as: "add_to_wishlist"
 
   post '/join-event', to: "invites#join_event", as: "join_event"
+  post '/invite-to-event', to: "invites#invite_to_event", as: "invite_to_event"
 end

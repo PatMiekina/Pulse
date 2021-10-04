@@ -1,6 +1,7 @@
 class InvitesController < ApplicationController
   before_action :find_invite, only: [:show, :edit, :update, :destroy]
-  before_action :set_event, only: [:join_event]
+  before_action :set_event, only: [:join_event, :invite_to_event]
+  before_action :set_user, only: [:invite_to_event]
 
   def index
     @invites = Invite.all
@@ -59,6 +60,25 @@ class InvitesController < ApplicationController
     end
   end
 
+  def invite_to_event
+    @group = Group.new
+    @group.event = @event
+    @group.owner = current_user
+    @group.name = "#{current_user.username}'s Group"
+    @group.save
+
+    @invite = Invite.new
+    @invite.owner = current_user
+    @invite.attendee = @user
+    @invite.group = @group
+    @invite.message = "Welcome to #{@event.name}"
+    @invite.confirmed = true
+
+    if @invite.save
+      redirect_to group_path(@group)
+    end
+  end
+
   private
 
   def invite_params
@@ -71,5 +91,9 @@ class InvitesController < ApplicationController
 
   def set_event
     @event = Event.find(params[:event])
+  end
+
+  def set_user
+    @user = User.find(params[:user])
   end
 end
