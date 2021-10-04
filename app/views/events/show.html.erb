@@ -35,4 +35,12 @@
     <% end %>
   </div>
   <%= render 'reviews', event: @event%>
+  <div class="groups">
+    <h4>Groups attending the event:</h4>
+    <ul>
+    <% @event.groups.each do |group| %>
+      <p><%= link_to group.name, group_path(group) %></p>
+    <% end %>
+    </ul>
+  </div>
 </div>

@@ -5,7 +5,7 @@ class Event < ApplicationRecord
   has_many :groups
   has_many :favorites
   has_many :reviews
-  # has_many :invites, dependent: :destroy, through: :groups
+  has_many :invites, dependent: :destroy, through: :groups
 
   def my_rating
       rating_sum = 0
