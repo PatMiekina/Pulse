@@ -34,7 +34,6 @@
       <%= link_to "Invite a friend!", users_path(event: @event), class:"btn btn-primary" %>
     <% end %>
   </div>
-  <%= render 'reviews', event: @event%>
   <div class="groups">
     <h4>Groups attending the event:</h4>
     <ul>
@@ -43,4 +42,5 @@
     <% end %>
     </ul>
   </div>
+  <%= render 'reviews', event: @event%>
 </div>
