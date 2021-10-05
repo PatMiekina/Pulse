@@ -3,3 +3,12 @@
 @import "events_index";
 @import "events_show";
 @import "my_events";
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 0 10vh;
+}
