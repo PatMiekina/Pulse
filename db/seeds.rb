@@ -8,12 +8,13 @@
 require "faker"
 
 puts "Resetting database"
-User.destroy_all
+
 Reviews.destroy_all
 Invite.destroy_all
 Group.destroy_all
 Event.destroy_all
 Location.destroy_all
+User.destroy_all
 
 puts "Creating test user..."
 User.create!(
