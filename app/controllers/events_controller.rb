@@ -8,8 +8,10 @@ class EventsController < ApplicationController
   end
 
   def show
-    if current_user.my_events_wishlist.include?(@event)
-      @favorite = Favorite.find_by event: @event, owner: current_user
+    if user_signed_in?
+      if current_user.my_events_wishlist.include?(@event)
+        @favorite = Favorite.find_by event: @event, owner: current_user
+      end
     end
     @review = Review.new
   end

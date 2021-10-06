@@ -8,13 +8,15 @@
   </div>
   <div class="top">
     <h2>Hi! I'm <%= @user.username %>!</h2>
-    <% if current_user.my_following.include?(@user) %>
-      <%= link_to favorite_path(@favorite, user: @user), method: :delete do %>
-        <p><i class="fas fa-heart"></i> Unfollow</p>
-      <% end %>
-    <% else %>
-      <%= link_to add_to_wishlist_path(owner: current_user, user: @user), method: :post do %>
-        <p><i class="far fa-heart"></i> Follow</p>
+    <% if user_signed_in? %>
+      <% if current_user.my_following.include?(@user) %>
+        <%= link_to favorite_path(@favorite, user: @user), method: :delete do %>
+          <p><i class="fas fa-heart"></i> Unfollow</p>
+        <% end %>
+      <% else %>
+        <%= link_to add_to_wishlist_path(owner: current_user, user: @user), method: :post do %>
+          <p><i class="far fa-heart"></i> Follow</p>
+        <% end %>
       <% end %>
     <% end %>
     <%= image_tag "https://media-exp1.licdn.com/dms/image/C5603AQEQl75flDaIFQ/profile-displayphoto-shrink_200_200/0/1517531922211?e=1634774400&v=beta&t=n2pCZbt7uHRkbNqQNwwjKcI69F9kBFp1dHtx9t1CPKs", class: "avatar-card"%>

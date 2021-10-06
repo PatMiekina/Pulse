@@ -12,8 +12,10 @@ class UsersController < ApplicationController
     @wishlist = @user.my_events_wishlist
     @following = @user.my_following
     @friends = @user.my_friends
-    if current_user.my_following.include?(@user)
-      @favorite = Favorite.find_by user: @user, owner: current_user
+    if user_signed_in?
+      if current_user.my_following.include?(@user)
+        @favorite = Favorite.find_by user: @user, owner: current_user
+      end
     end
     @review = Review.new
   end

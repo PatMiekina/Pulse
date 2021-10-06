@@ -8,13 +8,15 @@
   </div>
   <div class="top">
     <h2><%= @event.name %></h2>
-    <% if current_user.my_events_wishlist.include?(@event) %>
-      <%= link_to favorite_path(@favorite, event: @event), method: :delete do %>
-        <p><i class="fas fa-heart icon"></i> Remove from wish list</p>
-      <% end %>
-    <% else %>
-      <%= link_to add_to_wishlist_path(owner: current_user, event: @event), method: :post do %>
-        <p><i class="far fa-heart icon"></i> Add to wish list</p>
+    <% if user_signed_in? %>
+      <% if current_user.my_events_wishlist.include?(@event) %>
+        <%= link_to favorite_path(@favorite, event: @event), method: :delete do %>
+          <p><i class="fas fa-heart icon"></i> Remove from wish list</p>
+        <% end %>
+      <% else %>
+        <%= link_to add_to_wishlist_path(owner: current_user, event: @event), method: :post do %>
+          <p><i class="far fa-heart icon"></i> Add to wish list</p>
+        <% end %>
       <% end %>
     <% end %>
     <%= image_tag "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80", class: "event-img" %>
