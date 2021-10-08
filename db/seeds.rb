@@ -9,7 +9,8 @@ require "faker"
 
 puts "Resetting database"
 
-Reviews.destroy_all
+Favorite.destroy_all
+Review.destroy_all
 Invite.destroy_all
 Group.destroy_all
 Event.destroy_all
@@ -109,6 +110,7 @@ puts "Favorites created!"
 puts "Creating 50 user reviews..."
   50.times do |i|
     Review.create(
+      # event: Event.all.sample,
       reviewer: User.all.sample,
       user: User.all.sample,
       rating: [1..5].sample,
@@ -120,13 +122,15 @@ puts "User reviews created!"
 puts "Creating 50 event reviews..."
   50.times do |i|
     Review.create(
+      # user: User.all.sample,
       reviewer: User.all.sample,
       event: Event.all.sample,
-      rating: [1..5].sample,
+      rating: rand(1..5),
       content: Faker::Lorem.paragraph(sentence_count: 2),
       )
   end
 puts "Event reviews created!"
+
 puts "Reviews created!"
 
 puts "Population complete! :)"
