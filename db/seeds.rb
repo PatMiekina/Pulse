@@ -108,23 +108,19 @@ puts "Creating 50 favorites..."
 puts "Favorites created!"
 
 puts "Creating 50 user reviews..."
-# Reviews won't save unles user & event assigned
   50.times do |i|
     Review.create(
-      # event: Event.all.sample,
       reviewer: User.all.sample,
       user: User.all.sample,
-      rating: [1..5].sample,
+      rating: rand(1..5),
       content: Faker::Lorem.paragraph(sentence_count: 2)
       )
   end
 puts "User reviews created!"
 
 puts "Creating 50 event reviews..."
-# Reviews won't save unles user & event assigned
   50.times do |i|
     Review.create(
-      # user: User.all.sample,
       reviewer: User.all.sample,
       event: Event.all.sample,
       rating: rand(1..5),
