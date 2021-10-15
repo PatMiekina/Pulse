@@ -12,3 +12,47 @@
   width: 100%;
   padding: 0 10vh;
 }
+
+.pulse {
+  border-radius: 50%;
+  width: 150vh;
+  height: 150vh;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(204, 115, 115, 0.8) 0%, rgba(255, 198, 146, 0.32) 57.29%, rgba(244, 244, 244, 0.64) 100%);
+  filter: blur(4px);
+  z-index: -100;
+  animation: pulse 2.5s infinite ease-out;
+}
+
+.pulse-one {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+@keyframes pulse
+{
+  0%
+  {
+    transform: scale( .75 );
+  }
+  20%
+  {
+    transform: scale( 1 );
+  }
+  40%
+  {
+    transform: scale( .75 );
+  }
+  60%
+  {
+    transform: scale( 1 );
+  }
+  80%
+  {
+    transform: scale( .75 );
+  }
+  100%
+  {
+    transform: scale( .75 );
+  }
+}
