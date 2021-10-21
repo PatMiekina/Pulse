@@ -4,7 +4,7 @@
     <% @users.each do |user| %>
       <% unless user == current_user %>
         <div class="card-user">
-          <%= image_tag("profile1.jpeg", class: "avatar-card") %>
+          <%= image_tag "profile1.png", class: "avatar-card" %>
           <h4><%= user.username %></h4>
           <%= link_to "See more", user_path(user, event: @event), class:"btn btn-primary" %>
         </div>
