@@ -86,7 +86,7 @@ rails s
 
 
 ## Back End
-Application consist of four models:
+Application consist of the following models:
 - User
   - The entire User logic was created using [DEVISE](https://github.com/heartcombo/devise)
   - Authentication logic
